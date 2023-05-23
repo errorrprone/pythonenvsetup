@@ -1,0 +1,33 @@
+#!/bin/bash
+
+# Check if Homebrew is installed and install it if necessary
+if ! command -v brew &>/dev/null; then
+    echo "Installing Homebrew..."
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+fi
+
+# Update Homebrew and install Python 3
+echo "Updating Homebrew..."
+brew update
+echo "Installing Python 3..."
+brew install python3
+
+# Install pipenv for managing Python environments
+echo "Installing pipenv..."
+brew install pipenv
+
+# Add pipenv to the PATH
+echo "Adding pipenv to the PATH..."
+echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bash_profile
+source ~/.bash_profile
+
+# Verify the Python installation
+echo "Verifying Python installation..."
+python3 --version
+
+# Install additional Python packages as needed
+# For example, uncomment the following lines to install some common packages
+#echo "Installing additional Python packages..."
+#pipenv install numpy pandas matplotlib
+
+echo "Python 3 development environment setup complete!"
